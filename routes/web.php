@@ -50,3 +50,7 @@ route::get('siswa/{id}/edit', [MyController::class, 'edit']);
 
 route::put('siswa/{id}', [MyController::class, 'update']);
 route::delete('siswa/{id}', [MyController::class, 'destroy']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
