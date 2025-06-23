@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\MyController;
-
+use App\Http\Controllers\BackendController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Middleware\Admin;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -54,3 +57,14 @@ route::delete('siswa/{id}', [MyController::class, 'destroy']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['prefix' => 'admin','middleware' => ['auth',Admin::class]], function(){
+Route::get('/',[BackendController::class , 'index']);
+
+
+route::resource('/category',CategoryController::class);
+route::resource('/product',ProductController::class);
+
+
+
+});
