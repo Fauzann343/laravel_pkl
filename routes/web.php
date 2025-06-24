@@ -1,55 +1,30 @@
 <?php
 
-use App\Http\Controllers\MyController;
 use App\Http\Controllers\BackendController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\FrontController;
+use App\Http\Controllers\MyController;
 use App\Http\Middleware\Admin;
-Route::get('/', function () {
-    return view('welcome');
-});
+use Illuminate\Support\Facades\Route;
 
-//route basic
-Route::get('about', function () {
-    return 'ini halaman welcome';
-});
-
-Route::get('profile', function () {
-    return view('profile');
-});
-
-Route::get('produk/{namaproduk}', function ($a) {
-    return 'saya membeli <b>' . $a . '</b>';
-});
-
-Route::get('beli/{barang}/{jumlah}', function ($a, $b) {
-    return view('beli', compact('a', 'b'));
-});
-
-Route::get('kategori/{namakategori?}', function ($nama = null) {
-    if ($nama) {
-        return 'Anda memilih kategori :' . $nama;
-    } else {
-        return 'anda belum memilih kategori';
-    }
-
-});
+Route::get('/', [FrontController::class, 'index']);
+Route::get('/about', [FrontController::class, 'about']);
+Route::get('/product', [FrontController::class, 'product']);
+Route::get('/cart', [FrontController::class, 'cart']);
 
 Route::get('barang/{barang?}/{kode?}', function ($barang = null, $kode = null) {
     return view('barang', compact('barang', 'kode'));
 });
 
-use Illuminate\Support\Facades\Route;
-
-route::get('siswa', [MyController::class, 'index']);
+Route::get('siswa', [MyController::class, 'index']);
 route::post('/siswa', [MyController::class, 'store']);
 
-route::get('siswa/{create}', [MyController::class, 'create']);
-route::get('siswa/{id}', [MyController::class, 'show']);
-
+Route::get('siswa/{create}', [MyController::class, 'create']);
+Route::get('siswa/{id}', [MyController::class, 'show']);
 
 //edit daata
-route::get('siswa/{id}/edit', [MyController::class, 'edit']);
+Route::get('siswa/{id}/edit', [MyController::class, 'edit']);
 
 route::put('siswa/{id}', [MyController::class, 'update']);
 route::delete('siswa/{id}', [MyController::class, 'destroy']);
@@ -58,13 +33,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'admin','middleware' => ['auth',Admin::class]], function(){
-Route::get('/',[BackendController::class , 'index']);
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', Admin::class]], function () {
+    Route::get('/', [BackendController::class, 'index']);
 
-
-route::resource('/category',CategoryController::class);
-route::resource('/product',ProductController::class);
-
-
+    route::resource('/category', CategoryController::class);
+    route::resource('/product', ProductController::class);
 
 });
