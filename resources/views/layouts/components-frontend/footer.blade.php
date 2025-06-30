@@ -6,8 +6,8 @@
                     <div class="footer__widget">
                         <h4 class="footer__title">About Us.</h4>
                         <div class="footer__content">
-                            <p>Minimal E-Commerce is a dynamic and innovative online retail platform that offers a wide
-                                range of products to customers worldwide.</p>
+                            <p>Minimal E-Commerce is a dynamic and innovative online retail platform that offers
+                                a wide range of products to customers worldwide.</p>
                         </div>
                         <div class="footer__social__icon">
                             <ul>
@@ -39,22 +39,22 @@
                             <div class="footer__img">
                                 <ul>
                                     <li>
-                                        <img src="{{ asset('img/footer/footer__1.svg') }}" alt="">
+                                        <img src="{{asset('assets/frontend/img/footer/footer__1.svg')}}" alt="">
                                     </li>
                                     <li>
-                                        <img src="{{ asset('img/footer/footer__2.svg') }}" alt="">
+                                        <img src="{{asset('assets/frontend/img/footer/footer__2.svg')}}" alt="">
                                     </li>
                                     <li>
-                                        <img src="{{ asset('img/footer/footer__3.svg') }}" alt="">
+                                        <img src="{{asset('assets/frontend/img/footer/footer__3.svg')}}" alt="">
                                     </li>
                                     <li>
-                                        <img src="{{ asset('img/footer/footer__4.svg') }}" alt="">
+                                        <img src="{{asset('assets/frontend/img/footer/footer__4.svg')}}" alt="">
                                     </li>
                                     <li>
-                                        <img src="{{ asset('img/footer/footer__5.svg') }}" alt="">
+                                        <img src="{{asset('assets/frontend/img/footer/footer__5.svg')}}" alt="">
                                     </li>
                                     <li>
-                                        <img src="{{ asset('img/footer/footer__6.svg') }}" alt="">
+                                        <img src="{{asset('assets/frontend/img/footer/footer__6.svg')}}" alt="">
                                     </li>
                                 </ul>
                             </div>
@@ -113,3 +113,19 @@
             </div>
         </div>
     </div>
+
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="copyright__text">
+
+                        <p>© {{ date('Y') }} <strong>Minimalin</strong>. All rights reserved.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

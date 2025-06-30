@@ -14,4 +14,11 @@ public function product()
 return $this->hasMany(Product::class);
 
 }
+public function getRouteKeyName()
+{
+return 'slug';
+
+
+
+}
 }

@@ -1225,7 +1225,6 @@
     <script src="{{ asset('assets/backend/js/dashboards/dashboard.js') }}"></script>
     {{-- menambah js baru dan akan di panggil ketika di butuh --}}
     @include('sweetalert::alert')
-
     @yield('js')
     @stack('scripts')
 

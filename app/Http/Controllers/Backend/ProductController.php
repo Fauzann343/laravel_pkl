@@ -47,20 +47,18 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->price       = $request->price;
         $product->stock       = $request->stock;
-
         // upload gambar
         if ($request->hasFile('image')) {
             $file       = $request->file('image');
             $randomName = Str::random(20) . '.' . $file->getClientOriginalExtension();
-            $path       = $file->storeAs('products', $randomName, 'public');
-
+            $path       = $file->storeAs('product', $randomName, 'public');
             // memasukan nama image nya ke database
             $product->image = $path;
         }
 
         $product->save();
         toast('Data berhasil disimpan', 'success');
-        return redirect()->route('product.index');
+        return redirect()->route('backend.product.index');
     }
 
     public function show(string $id)
@@ -81,12 +79,12 @@ class ProductController extends Controller
     {
         // validasi
         $validated = $request->validate([
-            'name'        => 'required|unique:categories',
+            'name'        => 'required',
             'category_id' => 'required',
             'price'       => 'required|numeric',
             'description' => 'required',
             'stock'       => 'required|numeric',
-            // 'image'    => 'image|mimes:jpg,png',
+            // 'image'       => 'image|mimes:jpg,png',
         ]);
 
         $product              = Product::findOrFail($id);
@@ -96,7 +94,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->price       = $request->price;
         $product->stock       = $request->stock;
-
+        // upload gambar
         if ($request->hasFile('image')) {
             // menghapus foto lama
             Storage::disk('public')->delete($product->image);
@@ -104,15 +102,15 @@ class ProductController extends Controller
             // upload foto baru
             $file       = $request->file('image');
             $randomName = Str::random(20) . '.' . $file->getClientOriginalExtension();
-            $path       = $file->storeAs('products', $randomName, 'public');
-
+            $path       = $file->storeAs('product', $randomName, 'public');
             // memasukan nama image nya ke database
             $product->image = $path;
         }
 
         $product->save();
         toast('Data berhasil disimpan', 'success');
-        return redirect()->route('product.index');
+        return redirect()->route('backend.product.index');
+
     }
 
     public function destroy(string $id)
@@ -121,6 +119,6 @@ class ProductController extends Controller
         Storage::disk('public')->delete($product->image);
         $product->delete();
         toast('Data berhasil dihapus', 'success');
-        return redirect()->route('product.index');
+        return redirect()->route('backend.product.index');
     }
 }
